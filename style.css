@@ -1,0 +1,44 @@
+legend {
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: bold;
+    background-color: #00aeef;
+}
+
+p,
+label {
+    font-family: 'Barlow Condensed';
+}
+
+input[type="submit"] {
+    background-color: #00aeef;
+    border-color: #0283b3;
+    color: #ffffff;
+}
+
+input[type="submit"]:hover {
+    background-color: #0283b3;
+    border-color: #00aeef;
+    color: #ffffff;
+}
+
+input[type="reset"] {
+    background-color: #00aeef;
+    border-color: #0283b3;
+    color: #ffffff;
+}
+
+input[type="reset"]:hover {
+    background-color: #0283b3;
+    border-color: #00aeef;
+    color: #ffffff;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+}
+
+.buttonss {
+    display: flex;
+    justify-content: center;
+}
