@@ -48,7 +48,14 @@ try {
     console_log($e->getMessage());
 }
 
-$sql = "SELECT ID, firstname, infix, lastname, phonenumber, streetname
+$sql = "SELECT   ID
+                ,firstname
+                ,infix
+                ,lastname
+                ,phonenumber
+                ,streetname
+                ,housenumber
+                ,locality
         FROM persoon
         ORDER BY ID";
 
@@ -71,6 +78,8 @@ foreach ($result as $info) {
                 <td>$info->lastname</td>
                 <td>$info->phonenumber</td>
                 <td>$info->streetname</td>
+                <td>$info->housenumber</td>
+                <td>$info->locality</td>
                 <td>
                     <a href='delete.php?id={$info->ID}'>
                         <img src='img/b_drop.png' alt='drop'>
@@ -92,6 +101,8 @@ foreach ($result as $info) {
         <th>Achternaam</th>
         <th>Telefoonnummer</th>
         <th>Straatnaam</th>
+        <th>Huisnummer</th>
+        <th>Woonplaats</th>
         <th></th>
         <th></th>
     </thead>

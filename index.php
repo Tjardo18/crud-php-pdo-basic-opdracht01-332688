@@ -81,6 +81,16 @@
                     Straatnaam:
                     <input type="text" name="straatnaam" id="straatnaam" required />
                 </label>
+                <!-- Huisnummer -->
+                <label for="huisnummer">
+                    Huisnummer:
+                    <input type="text" name="huisnummer" id="huisnummer" required />
+                </label>
+                <!-- Woonplaats -->
+                <label for="woonplaats">
+                    Woonplaats:
+                    <input type="text" name="woonplaats" id="woonplaats" required />
+                </label>
             </fieldset>
 
             <div class="buttonss">
