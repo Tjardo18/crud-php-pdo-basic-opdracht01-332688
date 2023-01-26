@@ -22,9 +22,10 @@
 
         fieldset {
             display: flex;
-            width: 50%;
+            width: min-content;
             margin: .5em 0;
-            flex-direction: row;
+            /* flex-direction: row; */
+            flex-wrap: wrap;
         }
 
         fieldset>label {
@@ -35,8 +36,13 @@
         label>input:not([type="radio"]):not([type="checkbox"]),
         label>textarea,
         label>select {
-            width: 100%;
+            display: block;
+            /* width: 100%; */
             margin-top: .5em;
+        }
+
+        input[type="text"] {
+            width: 200px;
         }
     </style>
     <title>Backend-Form</title>
@@ -65,30 +71,13 @@
                     Achternaam:
                     <input type="text" name="achternaam" id="achternaam" required />
                 </label>
-            </fieldset>
-
-            <div class="buttonss">
-                <!-- Verstuurt het formulier -->
-                <input type="submit" value="Verstuur">
-                <!-- Reset het hele formulier -->
-                <input type="reset">
-            </div>
-        </form>
-
-        <br><br>
-
-        <form action="#" method="POST">
-            <fieldset>
-                <legend>Inloggen</legend>
-                <label for="username">
-                    Username:
-                    <input type="text" name="username" id="username" required />
-                </label>
-                <label for="wachtwoord">
-                    Wachtwoord:
-                    <input type="password" name="wachtwoord" id="wachtwoord" required />
+                <!-- Telefoon nummer -->
+                <label for="telefoonnummer">
+                    Telefoon nummer:
+                    <input type="text" name="telefoonnummer" id="telefoonnummer" placeholder="+31 6 12345678" required />
                 </label>
             </fieldset>
+
             <div class="buttonss">
                 <!-- Verstuurt het formulier -->
                 <input type="submit" value="Verstuur">
