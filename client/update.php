@@ -31,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 ,streetname = :strn
                                 ,housenumber = :hsnr
                                 ,locality = :lcl
+                                ,postalcode = :post
+                                ,country = :land
                 WHERE ID = :id;";
 
         // sql statement preparing + execute
@@ -43,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $yee->bindValue(':strn', $_POST['straatnaam'], PDO::PARAM_STR);
         $yee->bindValue(':hsnr', $_POST['huisnummer'], PDO::PARAM_STR);
         $yee->bindValue(':lcl', $_POST['woonplaats'], PDO::PARAM_STR);
+        $yee->bindValue(':post', $_POST['postcode'], PDO::PARAM_STR);
+        $yee->bindValue(':land', $_POST['land'], PDO::PARAM_STR);
         $yee->execute();
 
         echo "Het updaten is gelukt!";
@@ -66,6 +70,8 @@ $sql = "SELECT   ID
                 ,streetname AS STRN
                 ,housenumber AS HSNR
                 ,locality AS LCL
+                ,postalcode AS PLCE
+                ,country AS CTRY
         FROM     persoon
         WHERE ID = :id";
 
@@ -86,82 +92,7 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed">
-    <style>
-        body * {
-            box-sizing: border-box;
-        }
-
-        form {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        fieldset {
-            display: flex;
-            width: 50%;
-            margin: .5em 0;
-            flex-direction: row;
-        }
-
-        fieldset>label {
-            width: 100%;
-            margin-top: .5em;
-        }
-
-        label>input:not([type="radio"]):not([type="checkbox"]),
-        label>textarea,
-        label>select {
-            width: 100%;
-            margin-top: .5em;
-        }
-
-        legend {
-            font-family: 'Montserrat';
-            color: white;
-            font-weight: bold;
-            background-color: #00aeef;
-        }
-
-        p,
-        label {
-            font-family: 'Barlow Condensed';
-        }
-
-        input[type="submit"] {
-            background-color: #00aeef;
-            border-color: #0283b3;
-            color: #ffffff;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0283b3;
-            border-color: #00aeef;
-            color: #ffffff;
-        }
-
-        input[type="reset"] {
-            background-color: #00aeef;
-            border-color: #0283b3;
-            color: #ffffff;
-        }
-
-        input[type="reset"]:hover {
-            background-color: #0283b3;
-            border-color: #00aeef;
-            color: #ffffff;
-        }
-
-        input[type="button"]:hover {
-            cursor: pointer;
-        }
-
-        .buttonss {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../style.css">
     <title>Update</title>
 </head>
 
@@ -171,7 +102,7 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
         <form action="update.php" method="post">
             <!-- Persoonlijke Informatie -->
             <fieldset>
-                <legend>Persoonlijke Informatie</legend>
+                <legend>Persoonlijke Informatie Updaten</legend>
                 <!-- Voornaam -->
                 <label for="voornaam">
                     Voornaam:
@@ -187,21 +118,35 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
                     Achternaam:
                     <input type="text" name="achternaam" id="achternaam" value="<?= $result->LN ?>" required />
                 </label>
+                <!-- Telefoonnummer -->
                 <label for="telefoonnummer">
                     Telefoonnummer:
                     <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= $result->PNR ?>" required />
                 </label>
+                <!-- Straatnaam -->
                 <label for="straatnaam">
                     Straatnaam:
                     <input type="text" name="straatnaam" id="straatnaam" value="<?= $result->STRN ?>" required />
                 </label>
+                <!-- Huisnummer -->
                 <label for="huisnummer">
                     Huisnummer:
                     <input type="text" name="huisnummer" id="huisnummer" value="<?= $result->HSNR ?>" required />
                 </label>
+                <!-- Woonplaats -->
                 <label for="woonplaats">
                     Woonplaats:
                     <input type="text" name="woonplaats" id="woonplaats" value="<?= $result->LCL ?>" required />
+                </label>
+                <!-- Postcode -->
+                <label for="postcode">
+                    Postcode:
+                    <input type="text" name="postcode" id="postcode" value="<?= $result->PLCE ?>" required />
+                </label>
+                <!-- Land -->
+                <label for="land">
+                    Land:
+                    <input type="text" name="land" id="land" value="<?= $result->CTRY ?>" required />
                 </label>
             </fieldset>
             <input type="hidden" name="id" value="<?= $_GET['id'] ?>">

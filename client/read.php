@@ -1,32 +1,4 @@
-<style>
-    table,
-    th,
-    td {
-        border: #000000 solid 1px;
-        border-collapse: collapse;
-    }
-
-    th,
-    td {
-        padding: 2px 5px;
-    }
-
-    #alert {
-        background-color: red;
-        color: #FFFFFF;
-        font-weight: bolder;
-        border: 2px solid #cf0606;
-        cursor: pointer;
-    }
-
-    #normal {
-        background-color: #00FF00;
-        color: #FFFFFF;
-        font-weight: bolder;
-        border: 2px solid #09d909;
-        cursor: pointer;
-    }
-</style>
+<link rel="stylesheet" href="../style.css">
 
 <?php
 
@@ -56,6 +28,8 @@ $sql = "SELECT   ID
                 ,streetname
                 ,housenumber
                 ,locality
+                ,postalcode
+                ,country
         FROM persoon
         ORDER BY ID";
 
@@ -80,6 +54,8 @@ foreach ($result as $info) {
                 <td>$info->streetname</td>
                 <td>$info->housenumber</td>
                 <td>$info->locality</td>
+                <td>$info->postalcode</td>
+                <td>$info->country</td>
                 <td>
                     <a href='delete.php?id={$info->ID}'>
                         <img src='img/b_drop.png' alt='drop'>
@@ -103,6 +79,8 @@ foreach ($result as $info) {
         <th>Straatnaam</th>
         <th>Huisnummer</th>
         <th>Woonplaats</th>
+        <th>Postcode</th>
+        <th>Land</th>
         <th></th>
         <th></th>
     </thead>
