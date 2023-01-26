@@ -23,7 +23,15 @@ try {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
 
-        $sql = "UPDATE persoon SET firstname = :fn, infix = :infix, lastname = :ln, phonenumber = :pNr, streetname = :strn, housenumber = :hsnr WHERE ID = :id;";
+        $sql = "UPDATE persoon SET 
+                                firstname = :fn
+                                ,infix = :infix
+                                ,lastname = :ln
+                                ,phonenumber = :pNr
+                                ,streetname = :strn
+                                ,housenumber = :hsnr
+                                ,locality = :lcl
+                WHERE ID = :id;";
 
         // sql statement preparing + execute
         $yee = $pdo->prepare($sql);
@@ -34,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $yee->bindValue(':pNr', $_POST['telefoonnummer'], PDO::PARAM_STR);
         $yee->bindValue(':strn', $_POST['straatnaam'], PDO::PARAM_STR);
         $yee->bindValue(':hsnr', $_POST['huisnummer'], PDO::PARAM_STR);
+        $yee->bindValue(':lcl', $_POST['woonplaats'], PDO::PARAM_STR);
         $yee->execute();
 
         echo "Het updaten is gelukt!";
@@ -49,8 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Dit zorgt ervoor dat het formulier al is ingevuld met de persoon die bewerkt gaat worden.
-$sql = "SELECT ID, firstname AS FN, infix, lastname AS LN, phonenumber AS PNR, streetname AS STRN, housenumber AS HSNR
-        FROM persoon
+$sql = "SELECT   ID
+                ,firstname AS FN
+                ,infix
+                ,lastname AS LN
+                ,phonenumber AS PNR
+                ,streetname AS STRN
+                ,housenumber AS HSNR
+                ,locality AS LCL
+        FROM     persoon
         WHERE ID = :id";
 
 // SQL Statement preparing + Execute
@@ -182,6 +198,10 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
                 <label for="huisnummer">
                     Huisnummer:
                     <input type="text" name="huisnummer" id="huisnummer" value="<?= $result->HSNR ?>" required />
+                </label>
+                <label for="woonplaats">
+                    Woonplaats:
+                    <input type="text" name="woonplaats" id="woonplaats" value="<?= $result->LCL ?>" required />
                 </label>
             </fieldset>
             <input type="hidden" name="id" value="<?= $_GET['id'] ?>">

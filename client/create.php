@@ -26,14 +26,16 @@ $sql = "INSERT INTO persoon (ID
                             ,lastname
                             ,phonenumber
                             ,streetname
-                            ,housenumber)
+                            ,housenumber
+                            ,locality)
         VALUES              (NULL
                             ,:fname
                             ,:infix
                             ,:lname
                             ,:phone
                             ,:street
-                            ,:hNr);";
+                            ,:hNr
+                            ,:lcl);";
 
 $statement = $pdo->prepare($sql);
 
@@ -43,6 +45,7 @@ $statement->bindValue(':lname', $lName, PDO::PARAM_STR);
 $statement->bindValue(':phone', $pNr, PDO::PARAM_STR);
 $statement->bindValue(':street', $street, PDO::PARAM_STR);
 $statement->bindValue(':hNr', $houseNr, PDO::PARAM_STR);
+$statement->bindValue(':lcl', $local, PDO::PARAM_STR);
 
 $statement->execute();
 
