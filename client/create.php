@@ -24,12 +24,14 @@ $sql = "INSERT INTO persoon (ID
                             ,firstname
                             ,infix
                             ,lastname
-                            ,phonenumber)
+                            ,phonenumber
+                            ,streetname)
         VALUES              (NULL
                             ,:fname
                             ,:infix
                             ,:lname
-                            ,:phone);";
+                            ,:phone
+                            ,:street);";
 
 $statement = $pdo->prepare($sql);
 
@@ -37,6 +39,7 @@ $statement->bindValue(':fname', $fName, PDO::PARAM_STR);
 $statement->bindValue(':infix', $infix, PDO::PARAM_STR);
 $statement->bindValue(':lname', $lName, PDO::PARAM_STR);
 $statement->bindValue(':phone', $pNr, PDO::PARAM_STR);
+$statement->bindValue(':street', $street, PDO::PARAM_STR);
 
 $statement->execute();
 
