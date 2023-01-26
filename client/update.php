@@ -23,7 +23,7 @@ try {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
 
-        $sql = "UPDATE persoon SET firstname = :fn, infix = :infix, lastname = :ln WHERE ID = :id;";
+        $sql = "UPDATE persoon SET firstname = :fn, infix = :infix, lastname = :ln, phonenumber = :pNr WHERE ID = :id;";
 
         // sql statement preparing + execute
         $yee = $pdo->prepare($sql);
@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $yee->bindValue(':fn', $_POST['voornaam'], PDO::PARAM_STR);
         $yee->bindValue(':infix', $_POST['tussenvoegsel'], PDO::PARAM_STR);
         $yee->bindValue(':ln', $_POST['achternaam'], PDO::PARAM_STR);
+        $yee->bindValue(':pNr', $_POST['telefoonnummer'], PDO::PARAM_STR);
         $yee->execute();
 
         echo "Het updaten is gelukt!";
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Dit zorgt ervoor dat het formulier al is ingevuld met de persoon die bewerkt gaat worden.
-$sql = "SELECT ID, firstname AS FN, infix, lastname AS LN
+$sql = "SELECT ID, firstname AS FN, infix, lastname AS LN, phonenumber AS PNR
         FROM persoon
         WHERE ID = :id";
 
@@ -167,6 +168,10 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
                 <label for="achternaam">
                     Achternaam:
                     <input type="text" name="achternaam" id="achternaam" value="<?= $result->LN ?>" required />
+                </label>
+                <label for="achternaam">
+                    Telefoonnummer:
+                    <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= $result->PNR ?>" required />
                 </label>
             </fieldset>
             <input type="hidden" name="id" value="<?= $_GET['id'] ?>">

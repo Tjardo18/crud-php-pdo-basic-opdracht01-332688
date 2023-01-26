@@ -23,17 +23,20 @@ try {
 $sql = "INSERT INTO persoon (ID
                             ,firstname
                             ,infix
-                            ,lastname)
+                            ,lastname
+                            ,phonenumber)
         VALUES              (NULL
                             ,:fname
                             ,:infix
-                            ,:lname);";
+                            ,:lname
+                            ,:phone);";
 
 $statement = $pdo->prepare($sql);
 
 $statement->bindValue(':fname', $fName, PDO::PARAM_STR);
 $statement->bindValue(':infix', $infix, PDO::PARAM_STR);
 $statement->bindValue(':lname', $lName, PDO::PARAM_STR);
+$statement->bindValue(':phone', $pNr, PDO::PARAM_STR);
 
 $statement->execute();
 
