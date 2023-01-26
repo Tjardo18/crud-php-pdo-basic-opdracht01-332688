@@ -48,7 +48,7 @@ try {
     console_log($e->getMessage());
 }
 
-$sql = "SELECT ID, firstname, infix, lastname
+$sql = "SELECT ID, firstname, infix, lastname, phonenumber
         FROM persoon
         ORDER BY ID";
 
@@ -69,6 +69,7 @@ foreach ($result as $info) {
                 <td>$info->firstname</td>
                 <td>$info->infix</td>
                 <td>$info->lastname</td>
+                <td>$info->phonenumber</td>
                 <td>
                     <a href='delete.php?id={$info->ID}'>
                         <img src='img/b_drop.png' alt='drop'>
@@ -88,6 +89,7 @@ foreach ($result as $info) {
         <th>Voornaam</th>
         <th>Tussenvoegsel</th>
         <th>Achternaam</th>
+        <th>Telefoonnummer</th>
         <th></th>
         <th></th>
     </thead>
