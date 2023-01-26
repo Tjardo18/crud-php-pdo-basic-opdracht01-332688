@@ -8,43 +8,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        body * {
-            box-sizing: border-box;
-        }
-
-        form {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        fieldset {
-            display: flex;
-            width: min-content;
-            margin: .5em 0;
-            /* flex-direction: row; */
-            flex-wrap: wrap;
-        }
-
-        fieldset>label {
-            width: 100%;
-            margin-top: .5em;
-        }
-
-        label>input:not([type="radio"]):not([type="checkbox"]),
-        label>textarea,
-        label>select {
-            display: block;
-            /* width: 100%; */
-            margin-top: .5em;
-        }
-
-        input[type="text"] {
-            width: 200px;
-        }
-    </style>
     <title>Backend-Form</title>
 </head>
 
@@ -90,6 +53,16 @@
                 <label for="woonplaats">
                     Woonplaats:
                     <input type="text" name="woonplaats" id="woonplaats" required />
+                </label>
+                <!-- Postcode -->
+                <label for="postcode">
+                    Postcode:
+                    <input type="text" name="postcode" id="postcode" required />
+                </label>
+                <!-- Land -->
+                <label for="land">
+                    Land:
+                    <input type="text" name="land" id="land" required />
                 </label>
             </fieldset>
 
