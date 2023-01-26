@@ -1,3 +1,32 @@
+body * {
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+fieldset {
+    display: flex;
+    margin: .5em 0;
+    flex-direction: column;
+}
+
+fieldset>label {
+    width: 100%;
+    margin-top: .5em;
+}
+
+label>input:not([type="radio"]):not([type="checkbox"]),
+label>textarea,
+label>select {
+    width: 100%;
+    margin-top: .5em;
+}
+
 legend {
     font-family: 'Montserrat';
     color: white;
@@ -41,4 +70,32 @@ input[type="button"]:hover {
 .buttonss {
     display: flex;
     justify-content: center;
+}
+
+table,
+th,
+td {
+    border: #000000 solid 1px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 2px 5px;
+}
+
+#alert {
+    background-color: red;
+    color: #FFFFFF;
+    font-weight: bolder;
+    border: 2px solid #cf0606;
+    cursor: pointer;
+}
+
+#normal {
+    background-color: #00FF00;
+    color: #FFFFFF;
+    font-weight: bolder;
+    border: 2px solid #09d909;
+    cursor: pointer;
 }
