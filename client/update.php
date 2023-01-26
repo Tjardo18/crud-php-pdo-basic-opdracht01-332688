@@ -23,7 +23,7 @@ try {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
 
-        $sql = "UPDATE persoon SET firstname = :fn, infix = :infix, lastname = :ln, phonenumber = :pNr WHERE ID = :id;";
+        $sql = "UPDATE persoon SET firstname = :fn, infix = :infix, lastname = :ln, phonenumber = :pNr, streetname = :strn WHERE ID = :id;";
 
         // sql statement preparing + execute
         $yee = $pdo->prepare($sql);
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $yee->bindValue(':infix', $_POST['tussenvoegsel'], PDO::PARAM_STR);
         $yee->bindValue(':ln', $_POST['achternaam'], PDO::PARAM_STR);
         $yee->bindValue(':pNr', $_POST['telefoonnummer'], PDO::PARAM_STR);
+        $yee->bindValue(':strn', $_POST['straatnaam'], PDO::PARAM_STR);
         $yee->execute();
 
         echo "Het updaten is gelukt!";
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Dit zorgt ervoor dat het formulier al is ingevuld met de persoon die bewerkt gaat worden.
-$sql = "SELECT ID, firstname AS FN, infix, lastname AS LN, phonenumber AS PNR
+$sql = "SELECT ID, firstname AS FN, infix, lastname AS LN, phonenumber AS PNR, streetname AS STRN
         FROM persoon
         WHERE ID = :id";
 
@@ -169,9 +170,13 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
                     Achternaam:
                     <input type="text" name="achternaam" id="achternaam" value="<?= $result->LN ?>" required />
                 </label>
-                <label for="achternaam">
+                <label for="telefoonnummer">
                     Telefoonnummer:
                     <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= $result->PNR ?>" required />
+                </label>
+                <label for="straatnaam">
+                    Straatnaam:
+                    <input type="text" name="straatnaam" id="straatnaam" value="<?= $result->STRN ?>" required />
                 </label>
             </fieldset>
             <input type="hidden" name="id" value="<?= $_GET['id'] ?>">

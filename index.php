@@ -76,6 +76,11 @@
                     Telefoon nummer:
                     <input type="text" name="telefoonnummer" id="telefoonnummer" placeholder="+31 6 12345678" required />
                 </label>
+                <!-- Straatnaam -->
+                <label for="straatnaam">
+                    Straatnaam:
+                    <input type="text" name="straatnaam" id="straatnaam" required />
+                </label>
             </fieldset>
 
             <div class="buttonss">
